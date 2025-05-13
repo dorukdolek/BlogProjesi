@@ -1,0 +1,24 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Derleme klasörleri
+bin/
+obj/
+
+# Log ve önbellek dosyaları
+*.log
+*.cache
+
+# Veritabanı dosyaları
+*.db
+
+# Yedekleme
+*.bak
+
+# Mac/OSX
+.DS_Store
+
+# Rider/JetBrains
+.idea/

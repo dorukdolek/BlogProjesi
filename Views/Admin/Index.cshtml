@@ -1,0 +1,35 @@
+﻿@model List<BlogProjesi.Models.Post>
+
+@{
+    ViewData["Title"] = "Tüm Yazılar (Admin)";
+}
+
+<h2>Tüm Yazılar</h2>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Başlık</th>
+            <th>Yazar</th>
+            <th>Tarih</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Id</td>
+                <td>@post.Title</td>
+                <td>@post.User?.Username</td>
+                <td>@post.CreatedAt.ToString("g")</td>
+                <td>
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id" class="btn btn-sm btn-info">Detay</a>
+                    <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" class="btn btn-sm btn-warning">Düzenle</a>
+                    <a asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

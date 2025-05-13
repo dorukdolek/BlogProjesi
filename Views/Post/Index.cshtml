@@ -1,0 +1,36 @@
+﻿@model List<BlogProjesi.Models.Post>
+
+@{
+    ViewData["Title"] = "Tüm Yazılar";
+}
+
+<h2 class="mb-4">Tüm Yazılar</h2>
+
+<a asp-action="Create" class="btn btn-success mb-4">+ Yeni Yazı</a>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var post in Model)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">
+                        @post.Content.Substring(0, Math.Min(120, post.Content.Length))... <br />
+                        <small class="text-muted">
+                            Yazar: @post.User?.Username - @post.CreatedAt.ToString("dd.MM.yyyy") <br />
+                            Kategori: @post.Category?.Name
+                        </small>
+                    </p>
+                    <a asp-action="Details" asp-route-id="@post.Id" class="btn btn-outline-primary btn-sm">Detay</a>
+
+                    @if (Context.Session.GetInt32("UserId") == post.UserId || Context.Session.GetString("IsAdmin") == "True")
+                    {
+                        <a asp-action="Edit" asp-route-id="@post.Id" class="btn btn-outline-warning btn-sm">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@post.Id" class="btn btn-outline-danger btn-sm">Sil</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
