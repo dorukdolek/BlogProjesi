@@ -22,7 +22,7 @@ namespace BlogProjesi.Models
 
         [ValidateNever]
         public List<Comment> Comments { get; set; } = new();
-        public int? CategoryId { get; set; }  // dikkat: int? olarak değiştirildi
+        public int? CategoryId { get; set; } 
 
         [ValidateNever]
         public Category? Category { get; set; }
